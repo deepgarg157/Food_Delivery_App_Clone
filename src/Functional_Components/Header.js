@@ -1,4 +1,4 @@
-import { useContext, useState} from "react";
+import { useContext, useState,} from "react";
 import { LOGO_LINK } from "../utils/constants";
 import { Link } from "react-router-dom"
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -19,7 +19,7 @@ const Header = () => {
   return (
     <div className="flex bg-orange-200 justify-between shadow-lg">
       <div>
-        <img className="w-[100px] h-[100px] rounded-lg ml-[100px] mt-1" src={LOGO_LINK}></img>
+        <Link to="/"><img className="w-[100px] h-[100px] rounded-lg ml-[100px] mt-1" src={LOGO_LINK}></img></Link>
       </div>
       <div className="">
         <ul className="flex">
