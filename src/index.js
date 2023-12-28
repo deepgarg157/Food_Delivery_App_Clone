@@ -12,6 +12,8 @@ import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 import Cart from "./Functional_Components/Cart";
 import './index.css';
+import Login from "./Functional_Components/Login";
+import Register from "./Functional_Components/Register";
 
 // Chunking
 // Code spliting
@@ -138,6 +140,14 @@ const appRouter = createBrowserRouter([
       {
         path : "/cart",
         element :<Cart/>
+      },
+      {
+        path : "/login",
+        element :<Login/>
+      },
+      {
+        path : "/register",
+        element :<Register/>
       }
     ],
     errorElement: <Error />

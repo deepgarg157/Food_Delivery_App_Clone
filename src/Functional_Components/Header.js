@@ -7,11 +7,11 @@ import { useSelector } from "react-redux";
 
 const Header = () => {
 
-  const [btnNameReact, setBtnNameReact] = useState("Login")
+  const [btnNameReact, setBtnNameReact] = useState("Sign In")
 
   const onlineStatus = useOnlineStatus()
 
-  const { loggedInUser } = useContext(UserContext)
+  // const { loggedInUser } = useContext(UserContext)
 
   // Subscribing to the store using a selector
   const cartItems = useSelector((store) => store.cart.items)
@@ -42,12 +42,8 @@ const Header = () => {
             <Link to="/cart">Cart ({cartItems.length} items)</Link>
           </li>
 
-          <button className="p-4 my-6 hover:bg-red-100 rounded-lg" onClick={() => {
-            btnNameReact === "Login" ? setBtnNameReact("Logout") : setBtnNameReact("Login")
-          }}>{btnNameReact}
-          </button>
-
-          <li className="p-4 my-6 rounded-lg">{loggedInUser}</li>
+          <Link to="/register"><button className="p-4 my-6 hover:bg-slate-800 hover:text-white rounded-lg mx-2" >{btnNameReact}
+          </button></Link>
 
         </ul>
       </div>
