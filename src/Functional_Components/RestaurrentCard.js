@@ -9,10 +9,15 @@ const RestaurrentCard = (props) => {
     name,
     cuisines,
     avgRating,
-    costForTwo } = resName?.info
+    costForTwo,
+    aggregatedDiscountInfoV3 } = resName?.info
   return (
-    <div className=" m-2 p-2 w-60 rounded-lg hover:bg-slate-200 hover:h-[470px]">
+    <div className=" m-2 p-2 w-60 rounded-lg hover:bg-slate-200 hover:h-[470px] relative">
       <img className="w-full h-48 rounded-lg" src={CDN_LINK + cloudinaryImageId} alt="res-logo"></img>
+      <div className="flex absolute top-0 mt-[170px] ml-2">
+        <p className="text-xl text-white font-bold">{aggregatedDiscountInfoV3?.header}</p>
+        <p className="text-xl text-white font-bold">{aggregatedDiscountInfoV3?.subHeader}</p>
+      </div>
       <h3 className="w-44 px-2 text-lg font-bold my-2">{name}</h3>
       <h4 className="w-48 px-2 text-green-500 font-bold">{cuisines.join(", ")}</h4>
       <div className="flex my-2 px-1">
