@@ -4,13 +4,14 @@ import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom"
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import Footer from '../Functional_Components/Footer'
 
 const Body = () => {
 
   const [listRestaurrent, setListOfRestaurants] = useState([]);
   const [filterRest, setFilterRest] = useState([]);
-
   const [inputSearch, SetInputSearch] = useState("")
+  const [locationName, setLocationName] = useState('')
 
   const { loggedInUser, setUserName } = useContext(UserContext);
 
@@ -27,6 +28,7 @@ const Body = () => {
     const json = await data.json();
     setListOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
     setFilterRest(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    setLocationName(json?.data?.cards[1]?.card?.card?.header?.title)
   }
 
   const onlineStatus = useOnlineStatus();
@@ -34,14 +36,12 @@ const Body = () => {
   if (onlineStatus === false)
     return <h1>Please check the internet connection, your are offline!!</h1>
 
-
   return listRestaurrent.length === 0 ? <Shimmer /> : (
     <div className="">
       <div className="flex mx-14 my-3">
         <div className="px-2 mx-12">
 
-          <input className="border border-black py-2 mx-4 px-2 rounded-md" type="text" name="restName" value={inputSearch} placeholder="Search" onChange={(e) => 
-          {
+          <input className="border border-black py-2 mx-4 px-2 rounded-md" type="text" name="restName" value={inputSearch} placeholder="Search" onChange={(e) => {
             SetInputSearch(e.target.value);
           }} />
 
@@ -68,7 +68,7 @@ const Body = () => {
 
       </div>
 
-
+      <h1 className="mx-32 mt-10 text-2xl font-bold">{locationName}</h1>
       <div className="flex flex-wrap mx-28">
         {filterRest.map((restaurant) => (
           <Link
@@ -79,7 +79,8 @@ const Body = () => {
           </Link>
         ))}
       </div>
-
+        
+        <Footer />
     </div>
   )
 }
